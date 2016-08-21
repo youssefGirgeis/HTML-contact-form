@@ -1,0 +1,315 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+    
+    
+<link rel="stylesheet" href="style3.css" />  
+
+</head>
+<body>
+<div id="header">
+        
+       
+        <nav>
+            <ul class="navigation">
+                <li><a class="links" href="index.html">Home</a></li>
+                <li><a class="links" href="index.html">Assignments</a>
+                
+                <ul class=dropdown>
+                <li><a href="index.html">Assignment 1</a></li>
+                <li><a href="index.html">Assignment 2</a></li>
+                <li><a href="index.html">Assignment 3</a></li>
+                <li><a href="index.html">Assignment 4</a></li>
+                
+                </ul>
+                </li>
+              
+                <li><a href="contact.html" class="links">Contact Us</a></li>
+                <li><a href="" class="links">About</a></li>
+            </ul>
+        </nav>
+        <div id="header_info">
+            <p>
+                Youssef Girgeis, Software Engineering Technolgy<br/>
+                Advanced Web Development COMP 229<br/>
+                Professor: Patrick Gignac
+            </p>
+        </div>
+       
+        </div>
+    
+        <div id="errormsg">
+            <p id ="fnameerror"></p>
+            <p id="lnameerror"></p>
+            <p id=addresserror></p>
+            <p id="pcerror"></p>
+            <p id=ageerror></p>
+            <p id="proverror"></p>
+            <p id="passerror"></p>
+            <p id="emailerror"></p>
+    </div>
+    
+    <form id="myform">
+        <fieldset>
+            <legend>Member Registration</legend>
+            <ul id="list">
+            <li>
+                <label>First Name:</label>
+                <input type="text" name="fname" class="input" id="finame" placeholder="First Name">
+                
+                
+            </li>
+            <li>
+                <label>Last Name:</label>
+                <input type="text" name="lname" class="input" id="l-name" placeholder="Last Name">
+                
+            </li>
+            <li>
+                <label>Address:</label>
+                <input type="text" name="address" class="input" id="address" placeholder="Address">
+            </li>
+             <li>
+                <label>Postal Code:</label>
+                <input type="text" name="postalcode" class="input" id="pcode" placeholder="ex: A0A0A0">
+            </li>
+             <li>
+                <label>Province:</label>
+                <input type="text" name="province" class="input" id="prov" placeholder="QC, ON, MN, SK, AB, BC">
+            </li>
+             <li>
+                <label>Age</label>
+                <input type="text" name="age" class="input" id="age" placeholder="At least 18">
+            </li>
+             <li>
+                <label>Password</label>
+                <input type="password" name="password" class="input" id="pass">
+            </li>
+             <li>
+                <label>Confirm:</label>
+                <input type="password" name="cpassword" class="input" id="cpass">
+            </li>
+            <li>
+                <label>Email</label>
+                <input type="email" name="email" class="input" id="email" placeholder="example@.com">
+            </li>
+             <li>
+                <input type="button" value="Register Now" class="button" onclick="validation()">
+                <input type="button" value="Clear Form" class="button" onclick="clearForm()">
+            </li>
+                
+            </ul>
+        </fieldset>
+    </form>
+  
+    
+  
+    
+    
+    <script type="text/javascript">
+        
+   function validation() {
+       checkFirstName();
+       checkLastName();
+       checkAddress();
+       checkAge();
+       checkProvince();
+       checkPassword();
+       checkEmail();
+       checkPostalCode();
+}
+        
+        
+        function checkFirstName(){
+            var firstname = document.getElementById("finame");
+            //alert(firstname);
+            if(firstname.value == "" || firstname.value == null){
+                document.getElementById("fnameerror").innerHTML= "* First name must be filled";
+                firstname.focus();
+                return false;
+            }
+            else{
+                document.getElementById("fnameerror").innerHTML = "";
+                return true;
+            }
+        }
+   ////////////////////////////////////////////////////////////////////////////////////////////      
+        function checkLastName(){
+            var lastname = document.getElementById("l-name");
+            //alert(lastname);
+            if(lastname.value == "" || lastname.value == null){
+                document.getElementById("lnameerror").innerHTML= "* Last name must be filled";
+                lastname.focus();
+                return false;
+            }
+            else{
+                document.getElementById("lnameerror").innerHTML = "";
+                return true;
+            }
+        }
+    ////////////////////////////////////////////////////////////////////////////////////////////    
+        function checkAddress(){
+            var address = document.getElementById("address");
+               //  alert(address);
+            if(address.value == "" || address.value == null){
+                document.getElementById("addresserror").innerHTML= "* Address must be filled";
+                address.focus();
+                return false;
+            }
+            else{
+                document.getElementById("addresserror").innerHTML = "";
+                return true;
+            }
+        }
+    ////////////////////////////////////////////////////////////////////////////////////////////   
+        function checkAge(){
+            var age = document.getElementById("age");
+            if(age.value == "" || age.value == null){
+                document.getElementById("ageerror").innerHTML= "* Age must be filled";
+                age.focus();
+                return false;
+            }
+                 if(isNaN(age.value)){
+                     //alert(isNaN(age.value));
+                    document.getElementById("ageerror").innerHTML= "* Age must be a number";
+                     age.focus();
+                     return false;
+                 }
+                 if(age.value < 18){
+                    document.getElementById("ageerror").innerHTML= "* Age must be at least 18";
+                     
+                     return false;
+                 }
+            else{
+                document.getElementById("ageerror").innerHTML = "";
+                return true;
+            }
+        }
+    ////////////////////////////////////////////////////////////////////////////////////////////     
+        function checkProvince(){
+            var province = document.getElementById("prov");
+            p = ["on","qc","mn","sk","ab","bc"];
+            //console.log(p);
+            if(province.value == ""){
+                document.getElementById("proverror").innerHTML = "* Province must be filled";
+                province.focus();
+                return false;
+            }
+            
+            var x = province.value;
+            var y = x.toLowerCase();
+    
+            if(p.indexOf(y) == -1){
+                document.getElementById("proverror").innerHTML = "* Province must be one of these: ON,                      QC, MN, SK, AB, BC";
+            }
+            
+            else{
+                document.getElementById("proverror").innerHTML = "";
+                return true;
+            }
+        }
+    ////////////////////////////////////////////////////////////////////////////////////////////     
+        function checkPassword(){
+            var password = document.getElementById("pass");
+            var confirm_password = document.getElementById("cpass");
+            
+            if(password.value == "" || confirm_password.value == ""){
+                document.getElementById("passerror").innerHTML = "* Password and confirm password must                   be filled and must be identical";
+                password.focus();
+                return false;
+            }
+            
+            if(password.value != confirm_password.value){
+                document.getElementById("passerror").innerHTML = "* Password and confirm password  must                 be identical";
+                password.focus();
+                return false;
+            }
+            
+            ps = /[0-9]/;
+            if(!ps.test(password.value)) {
+                document.getElementById("passerror").innerHTML="* Password must contain at least one                     digit";
+                password.focus();
+                return false;
+            }
+            
+             ps = /[A-Z]/;
+            if(!ps.test(password.value)) {
+                document.getElementById("passerror").innerHTML="* password must contain at least one                       capital letter!";
+                password.focus();
+                return false;
+            }
+            
+            if(password.value.length < 6){
+                document.getElementById("passerror").innerHTML = "* Password must have at least 6                       characters";
+                password.focus();
+                return false;
+            }
+            
+            else{
+                document.getElementById("passerror").innerHTML = "";
+                return true;
+            }
+        }
+   /////////////////////////////////////////////////////////////////////////////////////////////
+        function checkEmail(){
+            var email = document.getElementById("email");
+            if(email.value == ""){
+                document.getElementById("emailerror").innerHTML = "* Email must be filled!";
+                email.focus();
+                return false;
+            }
+            
+            var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]                      {2})?)$/i;
+            
+            if(!re.test(email.value)){
+                document.getElementById("emailerror").innerHTML = "* Invalid Email address!";
+                email.focus();
+                return false;
+            }
+            
+            else{
+                document.getElementById("emailerror").innerHTML = "";
+                return true;
+            }
+        }
+    ////////////////////////////////////////////////////////////////////////////////////////////
+        function checkPostalCode(){
+            var postalcode = document.getElementById("pcode");
+            //alert(postalcode.value.split(''));
+            var pc = postalcode.value;
+            var pc_letters = pc.split('');
+            
+            if(pc == ""){
+                document.getElementById("pcerror").innerHTML="* Postal Code must be filled!";
+                pc.focus();
+                return false;
+            }
+            
+            if(pc.length < 6 || pc.length > 6){
+                document.getElementById("pcerror").innerHTML="* Postal Code must contain six letters";
+                pc.focus();
+                return false;
+            }
+            
+            if(isNaN(pc_letters[0])== false || isNaN(pc_letters[2])==false || isNaN(pc_letters[4])==                    false || isNaN(pc_letters[1])==true || isNaN(pc_letters[3])==true ||                                     isNaN(pc_letters[5])==true){
+                document.getElementById("pcerror").innerHTML="* Postal Code has to be in the a0a0a0 format";
+                pc.focus();
+                return false;
+            }
+            else{
+                document.getElementById("pcerror").innerHTML = "";
+                return true;
+            }
+        }
+        
+        function clearForm(){
+            document.getElementById("myform").reset();
+        }
+        
+        
+        
+        
+    </script>
+    
+</body>
+</html>
